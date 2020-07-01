@@ -16,20 +16,22 @@ public class touch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0)&&isGame==true)
+        if (Input.GetMouseButton(0) && isGame == true)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                if (hit.transform.tag == "Loli")
+                if (hit.transform.tag == "lolis")
                 {
-                    print("Hit loli");
+                    print("Hit lolis");
                     script.GetScore(10);
                     Destroy(hit.transform.gameObject);
+
                 }
             }
 
         }
+
     }
 }

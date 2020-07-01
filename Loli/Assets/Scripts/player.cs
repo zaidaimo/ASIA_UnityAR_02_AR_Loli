@@ -2,30 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour
 {
     public int score;
-    public creator[] Hole;  //隨機產生蘿莉
-    public GameObject[] canvas_ui;  //統一控制UI
+    public creator[] Hole;  //地鼠洞 陣列
+    public GameObject[] canvas_ui;  //UI
     public Text time_text;
     public Text score_text;
     public touch camera_touch;  //遊戲結束時無法再點擊蘿莉
     public int nowtime;  //顯示時間剩幾秒
 
+    //public AudioClip soundButton;
+    //private AudioSource aud;
+
+
     // Start is called before the first frame update
     void Start()
-    {   //遊戲初始分數為0
-        score = 0;
+    {
+        score = 0; //遊戲初始分數為0
         canvas_control(0);
+        
     }
 
     public void StartGame()  //地洞功能開啟
     {
         for (int a = 0; a < Hole.Length; a++)
-        {   
-            Hole[a].enabled = true;
-            Hole[a].StartCreator();  //觸發StartCreator函數
+        {
+            Hole[a].StartCreator();  //呼叫StartCreator功能
+            
         }
         canvas_control(1);  //Start Game 按鈕影藏顯示
         nowtime = 10;  //開始時間定義為60秒
@@ -34,9 +40,11 @@ public class player : MonoBehaviour
         camera_touch.isGame = true;
     }
     
+        
+    
     public void canvas_control(int a)  //控制器控制canvas
     {
-        for(int b = 0; b < canvas_ui.Length; b++)
+        for (int b = 0; b < canvas_ui.Length; b++)
         {
             canvas_ui[b].SetActive(false);  //所有物件關閉
         }
@@ -60,8 +68,8 @@ public class player : MonoBehaviour
 
     public void EndGame()  //遊戲結束
     {
-        for (int a=0;a<Hole.Length;a++)  //結束遊戲時將蘿莉取消顯示
-        {   
+        for (int a = 0; a < Hole.Length; a++)  //結束遊戲時將蘿莉取消顯示
+        {
             Hole[a].isGame = false;
         }
         camera_touch.isGame = false;
@@ -72,5 +80,12 @@ public class player : MonoBehaviour
         score += getscore;
         score_text.text = score.ToString();  //將數字轉為字串顯示
     }
+    
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
     
 }
